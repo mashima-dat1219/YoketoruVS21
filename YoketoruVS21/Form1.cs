@@ -124,6 +124,8 @@ namespace YoketoruVS21
                         chrs[i].Left = rand.Next(ClientSize.Width - chrs[i].Width);
                         chrs[i].Top = rand.Next(ClientSize.Height - chrs[i].Height);
                     }
+
+
                     break;
 
                 case State.Gameover:
@@ -146,7 +148,8 @@ namespace YoketoruVS21
             Point mp = PointToClient(MousePosition);
 
             //TODO: mpがプレイヤーラベルの中心になるように設定
-            
+            chrs[PlayerIndex].Left = mp.X - (chrs[PlayerIndex].Width / 2);
+            chrs[PlayerIndex].Top = mp.Y - (chrs[PlayerIndex].Height / 2);
         }
 
         private void startButton_Click(object sender, EventArgs e)
