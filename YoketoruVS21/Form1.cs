@@ -126,6 +126,7 @@ namespace YoketoruVS21
                     }
 
 
+
                     break;
 
                 case State.Gameover:
