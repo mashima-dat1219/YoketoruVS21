@@ -13,14 +13,14 @@ namespace YoketoruVS21
 {
     public partial class Form1 : Form
     {
-        const bool isDebug = true;
+        const bool isDebug = false;
 
         const int SpeedMax = 20;
-        const int StartTime = 100;
+        const int StartTime = 200;
 
         const int PlayerMax = 1;
-        const int EnemyMax = 3;
-        const int ItemMax = 3;
+        const int EnemyMax = 5;
+        const int ItemMax = 10;
         const int ChrMax = PlayerMax + EnemyMax + ItemMax;
 
         Label[] chrs = new Label[ChrMax];
@@ -134,18 +134,15 @@ namespace YoketoruVS21
                     time = StartTime + 1;
                     chrs[PlayerIndex].Text = PlayerText;
 
-                    for (int i = ItemIndex; i < ChrMax; i++)
-                    {
-                        chrs[i].Visible = true;
-                    }
-
-                    for (int i=EnemyIndex;i<ChrMax; i++)
+                    for (int i = EnemyIndex;i < ChrMax; i++)
                     {
                         chrs[i].Left = rand.Next(ClientSize.Width - chrs[i].Width);
                         chrs[i].Top = rand.Next(ClientSize.Height - chrs[i].Height);
 
                         vx[i] = rand.Next(-SpeedMax, SpeedMax + 1);
                         vy[i] = rand.Next(-SpeedMax, SpeedMax + 1);
+
+                        chrs[i].Visible = true;
                     }
 
                     break;
@@ -232,6 +229,7 @@ namespace YoketoruVS21
                             itemCount--;
                         //}
                         chrs[i].Visible = false;
+                        leftLabel.Text = $"★：{itemCount}";
 
                         if (itemCount <= 0)
                         {
@@ -240,7 +238,6 @@ namespace YoketoruVS21
                     }       
                 }
             }
-            leftLabel.Text = $"★：{itemCount}";
         }
 
         private void startButton_Click(object sender, EventArgs e)
