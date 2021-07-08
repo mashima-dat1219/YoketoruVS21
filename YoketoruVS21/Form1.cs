@@ -38,6 +38,7 @@ namespace YoketoruVS21
 
         int itemCount = 0;
         int time = 0;
+        int hiscore = 0;
 
         static Random rand = new Random();
 
@@ -120,6 +121,7 @@ namespace YoketoruVS21
                     gameOverLabel.Visible = false;
                     titleButton.Visible = false;
                     clearLabel.Visible = false;
+                    hiLabel.Text = $"HighScore{hiscore}";
                     break;
 
                 case State.Game:
@@ -160,6 +162,12 @@ namespace YoketoruVS21
                     //MessageBox.Show("Clear");
                     clearLabel.Visible = true;
                     titleButton.Visible = true;
+                    hiLabel.Visible = true;
+                    if(time > hiscore)
+                    {
+                        hiscore = time;
+                        hiLabel.Text = $"HighScore{hiscore}";
+                    }
                     break;
             }
 

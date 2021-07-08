@@ -102,7 +102,7 @@ namespace YoketoruVS21
             this.hiLabel.AutoSize = true;
             this.hiLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.hiLabel.Font = new System.Drawing.Font("Yu Gothic UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.hiLabel.Location = new System.Drawing.Point(301, 207);
+            this.hiLabel.Location = new System.Drawing.Point(305, 221);
             this.hiLabel.Name = "hiLabel";
             this.hiLabel.Size = new System.Drawing.Size(198, 37);
             this.hiLabel.TabIndex = 5;
