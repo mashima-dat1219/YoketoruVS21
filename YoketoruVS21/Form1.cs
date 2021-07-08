@@ -16,6 +16,7 @@ namespace YoketoruVS21
         const bool isDebug = true;
 
         const int SpeedMax = 20;
+        const int StartTime = 100;
 
         const int PlayerMax = 1;
         const int EnemyMax = 3;
@@ -35,7 +36,8 @@ namespace YoketoruVS21
         const string ItemText = "★";
         const string TempText = "(>_<)";
 
-        int itemCount;
+        int itemCount = 0;
+        int time = 0;
 
         static Random rand = new Random();
 
@@ -127,6 +129,7 @@ namespace YoketoruVS21
                     hiLabel.Visible = false;
 
                     itemCount = ItemMax;
+                    time = StartTime + 1;
                     chrs[PlayerIndex].Text = PlayerText;
 
                     for (int i = ItemIndex; i < ChrMax; i++)
@@ -162,6 +165,9 @@ namespace YoketoruVS21
 
         void UpdateGame()
         {
+            time--;
+            timeLabel.Text = $"Time{time}";
+
             Point mp = PointToClient(MousePosition);
 
             //TODO: mpがプレイヤーラベルの中心になるように設定
@@ -170,6 +176,8 @@ namespace YoketoruVS21
 
             for(int i=EnemyIndex;i<ChrMax;i++)
             {
+                if (!chrs[i].Visible) continue;
+
                 chrs[i].Left += vx[i];
                 chrs[i].Top += vy[i];
 
@@ -205,10 +213,10 @@ namespace YoketoruVS21
                     }
                     else
                     {
-                        if (chrs[i].Visible != false)
-                        {
+                        //if (chrs[i].Visible != false)
+                        //{
                             itemCount--;
-                        }
+                        //}
                         chrs[i].Visible = false;
 
                         if (itemCount <= 0)
