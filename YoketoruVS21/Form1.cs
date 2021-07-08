@@ -152,6 +152,8 @@ namespace YoketoruVS21
                     //MessageBox.Show("Gameover");
                     gameOverLabel.Visible = true;
                     titleButton.Visible = true;
+
+                    chrs[PlayerIndex].Text = TempText;
                     break;
 
                 case State.Clear:
@@ -167,6 +169,10 @@ namespace YoketoruVS21
         {
             time--;
             timeLabel.Text = $"Time{time}";
+            if(time <= 0)
+            {
+                nextState = State.Gameover;
+            }
 
             Point mp = PointToClient(MousePosition);
 
@@ -208,7 +214,7 @@ namespace YoketoruVS21
                     if(i < ItemIndex)
                     //if(chrs[i] == EnemyText)
                     {
-                        chrs[PlayerIndex].Text = TempText;
+                        //chrs[PlayerIndex].Text = TempText;
                         nextState = State.Gameover;
                     }
                     else
