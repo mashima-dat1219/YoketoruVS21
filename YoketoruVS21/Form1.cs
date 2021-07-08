@@ -33,6 +33,9 @@ namespace YoketoruVS21
         const string PlayerText = "(*'ω'*)";
         const string EnemyText = "◆";
         const string ItemText = "★";
+        const string TempText = "(>_<)";
+
+        int itemCount;
 
         static Random rand = new Random();
 
@@ -123,7 +126,15 @@ namespace YoketoruVS21
                     copyrightLabel.Visible = false;
                     hiLabel.Visible = false;
 
-                    for(int i=EnemyIndex;i<ChrMax; i++)
+                    itemCount = ItemMax;
+                    chrs[PlayerIndex].Text = PlayerText;
+
+                    for (int i = ItemIndex; i < ChrMax; i++)
+                    {
+                        chrs[i].Visible = true;
+                    }
+
+                    for (int i=EnemyIndex;i<ChrMax; i++)
                     {
                         chrs[i].Left = rand.Next(ClientSize.Width - chrs[i].Width);
                         chrs[i].Top = rand.Next(ClientSize.Height - chrs[i].Height);
@@ -162,7 +173,7 @@ namespace YoketoruVS21
                 chrs[i].Left += vx[i];
                 chrs[i].Top += vy[i];
 
-                if (chrs[i].Left<0)
+                if (chrs[i].Left < 0)
                 {
                     vx[i] = Math.Abs(vx[i]);
                 }
@@ -184,9 +195,30 @@ namespace YoketoruVS21
                    &&  (mp.Y >= chrs[i].Top)
                    &&  (mp.Y < chrs[i].Bottom) )
                 {
-                    MessageBox.Show("あたった");
+                    //MessageBox.Show("あたった");
+                    
+                    if(i < ItemIndex)
+                    //if(chrs[i] == EnemyText)
+                    {
+                        chrs[PlayerIndex].Text = TempText;
+                        nextState = State.Gameover;
+                    }
+                    else
+                    {
+                        if (chrs[i].Visible != false)
+                        {
+                            itemCount--;
+                        }
+                        chrs[i].Visible = false;
+
+                        if (itemCount <= 0)
+                        {
+                            nextState = State.Clear;
+                        }
+                    }       
                 }
             }
+            leftLabel.Text = $"★：{itemCount}";
         }
 
         private void startButton_Click(object sender, EventArgs e)
